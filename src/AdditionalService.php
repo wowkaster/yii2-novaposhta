@@ -6,7 +6,7 @@ namespace jones\novaposhta;
  * @package jones\novaposhta
  * @author sergii gamaiunov <hello@webkadabra.com>
  *
- * This model contain methods to create and configure orders
+ * This model contain methods to create and configure return orders
  */
 final class AdditionalService extends Api
 {
