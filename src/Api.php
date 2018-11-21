@@ -136,12 +136,14 @@ class Api extends Model
             $request->build($class->getShortName(), $method, $this->getValues());
             $response = $request->execute();
         } catch (ClientException $e) {
+            $this->logError($e->getMessage());
             $this->addError($method, $e->getMessage());
             return false;
         }
 
         $success = filter_var($response['success'], FILTER_VALIDATE_BOOLEAN);
         if (!$success) {
+            $this->logError($response['errors']);
             $this->addErrors([$method => $response['errors']]);
             return false;
         }
@@ -169,6 +171,17 @@ class Api extends Model
     {
         if (!empty($info)) {
             Yii::info($info, static::class);
+        }
+    }
+
+    /**
+     * Log response errors
+     * @param string $errors
+     */
+    private function logError($errors)
+    {
+        if (!empty($errors)) {
+            Yii::error($errors, static::class);
         }
     }
 
