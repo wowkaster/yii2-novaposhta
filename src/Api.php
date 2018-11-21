@@ -157,7 +157,7 @@ class Api extends Model
     private function logWarnings($warnings)
     {
         if (!empty($warnings)) {
-            Yii::warning($warnings);
+            Yii::warning($warnings, static::class);
         }
     }
 
@@ -168,7 +168,7 @@ class Api extends Model
     private function logInfo($info)
     {
         if (!empty($info)) {
-            Yii::info($info);
+            Yii::info($info, static::class);
         }
     }
 
