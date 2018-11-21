@@ -44,13 +44,13 @@ class Client implements ClientInterface
         try {
             $response = $this->client->post($url, $options);
         } catch (GuzzleClientException $e) {
-            Yii::error($e->getRequest());
+            Yii::error($e->getRequest(), static::class);
             if ($e->hasResponse()) {
-                Yii::error($e->getResponse());
+                Yii::error($e->getResponse(), static::class);
             }
             throw new ClientException($e);
         }
-        Yii::trace($response);
+        Yii::trace($response, static::class);
         return (string) $response->getBody();
     }
 }
