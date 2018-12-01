@@ -58,18 +58,18 @@ final class AdditionalService extends Api
     }
 
     public function checkPossibilityCreateReturn(){
-        $this->call('CheckPossibilityCreateReturn');
+        return $this->call('CheckPossibilityCreateReturn');
     }
 
     public function create(){
-        $this->call('save');
+        return $this->call('save');
     }
 
     public function delete(){
-        $this->call('delete');
+        return $this->call('delete');
     }
 
     public function getList(){
-        $this->call('getReturnOrdersList');
+        return $this->call('getReturnOrdersList');
     }
 }
