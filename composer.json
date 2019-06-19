@@ -10,7 +10,7 @@
             "email": "ievgen.sentiabov@gmail.com"
         }
     ],
-    "version": "0.0.6",
+    "version": "0.0.7",
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.1",

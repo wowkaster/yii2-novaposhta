@@ -30,17 +30,18 @@ class Client implements ClientInterface
      * @param RequestInterface $request
      * @param string $contentType
      * @param string $url
+     * @param array $options
      * @return string
      * @throws \jones\novaposhta\http\ClientException
      */
-    public function execute(RequestInterface $request, $contentType, $url)
+    public function execute(RequestInterface $request, $contentType, $url, $options=[])
     {
-        $options = [
+        $options = array_merge($options, [
             'headers' => [
                 'content-type' => $contentType
             ],
             'body' => $request->getBody()
-        ];
+        ]);
         try {
             $response = $this->client->post($url, $options);
         } catch (GuzzleClientException $e) {

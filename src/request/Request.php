@@ -38,6 +38,12 @@ class Request implements RequestInterface
     private $body;
 
     /**
+     * Options for request
+     * @var array
+     */
+    private $options;
+
+    /**
      * Init request object
      * @param ConverterInterface $converter
      * @param ClientFactory $factory
@@ -73,7 +79,7 @@ class Request implements RequestInterface
     public function execute()
     {
         $client = $this->factory->create();
-        $response = $client->execute($this, $this->converter->getContentType(), $this->getUrl());
+        $response = $client->execute($this, $this->converter->getContentType(), $this->getUrl(), $this->getOptions());
         return $this->converter->decode($response);
     }
 
@@ -83,6 +89,15 @@ class Request implements RequestInterface
     public function getBody()
     {
         return $this->body;
+    }
+
+    public function setOptions(array $options){
+        $this->options = $options;
+        return $this;
+    }
+
+    public function getOptions(){
+        return $this->options;
     }
 
     /**

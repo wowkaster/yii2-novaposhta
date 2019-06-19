@@ -26,4 +26,10 @@ interface RequestInterface
      * @return string
      */
     public function getBody();
+
+    /**
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function setOptions(array $options);
 }
