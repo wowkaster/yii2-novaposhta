@@ -14,11 +14,11 @@ class TrackingDocument  extends Api
 
     /**
      * Get list of counterparties
-     * @param string $type
+     * @param array $options
      * @param string $filter
      * @return array|bool
      */
-    public function getStatusDocuments($filter = '')
+    public function getStatusDocuments($filter = '', $options=[])
     {
         if (!is_array($filter)) {
             $filter = [
@@ -30,6 +30,6 @@ class TrackingDocument  extends Api
         }
         $this->setScenario(self::SCENARIO_GET_STATUSDOCUMENTS);
         $this->Documents = $filter;
-        return $this->call(self::SCENARIO_GET_STATUSDOCUMENTS);
+        return $this->call(self::SCENARIO_GET_STATUSDOCUMENTS, $options);
     }
 }

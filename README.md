@@ -91,6 +91,22 @@ To get list of errors just call:
 $model->getErrors();
 ```
 
+### Use more then one api token
+
+```php
+
+$model = new \jones\novaposhta\Address(new \jones\novaposhta\request\RequestFactory());
+
+$token1 = 'token1';
+$factory1 = new RequestFactory($token);
+$model->setRequestFactory($factory1);
+
+$token2 = 'token2';
+$factory2 = new RequestFactory($token);
+$model->setRequestFactory($factory2);
+
+```
+
 ### List of available models
 
  - [Address](#address-model)
@@ -99,6 +115,7 @@ $model->getErrors();
  - ContactPerson (under development)
  - Counterparty (under development)
  - ScanSheet (under development)
+ - AdditionalService
 
 ### List of implemented methods
 

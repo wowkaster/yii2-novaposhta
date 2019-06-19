@@ -120,10 +120,11 @@ class Api extends Model
     /**
      * Call api method
      * @param string $method name of api method
+     * @param array $options for guzzle http
      * @return array|bool
      * @throws \yii\base\InvalidConfigException
      */
-    protected function call($method)
+    protected function call($method, $options=[])
     {
         if ($this->isValidationEnabled() && !$this->validate()) {
             return false;
@@ -133,17 +134,16 @@ class Api extends Model
 
         try {
             $class = new \ReflectionClass($this);
-            $request->build($class->getShortName(), $method, $this->getValues());
+            $request->build($class->getShortName(), $method, $this->getValues())
+                ->setOptions($options);
             $response = $request->execute();
         } catch (ClientException $e) {
-            $this->logError($e->getMessage());
             $this->addError($method, $e->getMessage());
             return false;
         }
 
         $success = filter_var($response['success'], FILTER_VALIDATE_BOOLEAN);
         if (!$success) {
-            $this->logError($response['errors']);
             $this->addErrors([$method => $response['errors']]);
             return false;
         }
@@ -171,17 +171,6 @@ class Api extends Model
     {
         if (!empty($info)) {
             Yii::info($info, static::class);
-        }
-    }
-
-    /**
-     * Log response errors
-     * @param string $errors
-     */
-    private function logError($errors)
-    {
-        if (!empty($errors)) {
-            Yii::error($errors, static::class);
         }
     }
 

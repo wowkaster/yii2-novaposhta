@@ -13,7 +13,8 @@ interface ClientInterface
      * @param RequestInterface $request
      * @param string $contentType
      * @param string $url
+     * @param array $options
      * @return string
      */
-    public function execute(RequestInterface $request, $contentType, $url);
+    public function execute(RequestInterface $request, $contentType, $url, $options=[]);
 }
