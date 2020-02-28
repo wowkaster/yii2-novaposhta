@@ -60,19 +60,19 @@ final class AdditionalService extends Api
     }
 
     public function checkPossibilityCreateReturn(){
-        return $this->call('CheckPossibilityCreateReturn');
+        return $this->call(self::SCENARIO_CHECK);
     }
 
     public function create(){
-        return $this->call('save');
+        return $this->call(self::SCENARIO_CREATE);
     }
 
     public function delete(){
-        return $this->call('delete');
+        return $this->call(self::SCENARIO_DELETE);
     }
 
     public function getList(){
-        return $this->call('getReturnOrdersList');
+        return $this->call(self::SCENARIO_LIST);
     }
 
     public function getRedirectList(){

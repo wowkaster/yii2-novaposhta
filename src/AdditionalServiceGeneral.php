@@ -99,6 +99,6 @@ final class AdditionalServiceGeneral extends Api
 
     public function delete()
     {
-        return $this->call('delete');
+        return $this->call(self::SCENARIO_DELETE);
     }
 }
